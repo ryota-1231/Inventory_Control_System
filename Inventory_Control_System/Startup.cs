@@ -1,3 +1,5 @@
+using Inventory_Control_System.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +26,8 @@ namespace Inventory_Control_System
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<Inventory_Control_SystemContext>(options =>
+           options.UseSqlite(Configuration.GetConnectionString("Inventory_Control_SystemContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
