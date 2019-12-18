@@ -10,22 +10,22 @@ using Inventory_Control_System.Models;
 
 namespace Inventory_Control_System.Controllers
 {
-    public class InventoryController : Controller
+    public class SaleController : Controller
     {
         private readonly Inventory_Control_SystemContext _context;
 
-        public InventoryController(Inventory_Control_SystemContext context)
+        public SaleController(Inventory_Control_SystemContext context)
         {
             _context = context;
         }
 
-        // GET: Inventory
+        // GET: Sale
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Inventory.ToListAsync());
+            return View(await _context.Sale.ToListAsync());
         }
 
-        // GET: Inventory/Details/5
+        // GET: Sale/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace Inventory_Control_System.Controllers
                 return NotFound();
             }
 
-            var inventory = await _context.Inventory
+            var sale = await _context.Sale
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (inventory == null)
+            if (sale == null)
             {
                 return NotFound();
             }
 
-            return View(inventory);
+            return View(sale);
         }
 
-        // GET: Inventory/Create
+        // GET: Sale/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Inventory/Create
+        // POST: Sale/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Quantity,ReleaseDate")] Inventory inventory)
+        public async Task<IActionResult> Create([Bind("Id,quantity,ReleaseDate")] Sale sale)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(inventory);
+                _context.Add(sale);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(inventory);
+            return View(sale);
         }
 
-        // GET: Inventory/Edit/5
+        // GET: Sale/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace Inventory_Control_System.Controllers
                 return NotFound();
             }
 
-            var inventory = await _context.Inventory.FindAsync(id);
-            if (inventory == null)
+            var sale = await _context.Sale.FindAsync(id);
+            if (sale == null)
             {
                 return NotFound();
             }
-            return View(inventory);
+            return View(sale);
         }
 
-        // POST: Inventory/Edit/5
+        // POST: Sale/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Quantity,ReleaseDate")] Inventory inventory)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,quantity,ReleaseDate")] Sale sale)
         {
-            if (id != inventory.Id)
+            if (id != sale.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace Inventory_Control_System.Controllers
             {
                 try
                 {
-                    _context.Update(inventory);
+                    _context.Update(sale);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!InventoryExists(inventory.Id))
+                    if (!SaleExists(sale.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace Inventory_Control_System.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(inventory);
+            return View(sale);
         }
 
-        // GET: Inventory/Delete/5
+        // GET: Sale/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace Inventory_Control_System.Controllers
                 return NotFound();
             }
 
-            var inventory = await _context.Inventory
+            var sale = await _context.Sale
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (inventory == null)
+            if (sale == null)
             {
                 return NotFound();
             }
 
-            return View(inventory);
+            return View(sale);
         }
 
-        // POST: Inventory/Delete/5
+        // POST: Sale/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var inventory = await _context.Inventory.FindAsync(id);
-            _context.Inventory.Remove(inventory);
+            var sale = await _context.Sale.FindAsync(id);
+            _context.Sale.Remove(sale);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool InventoryExists(int id)
+        private bool SaleExists(int id)
         {
-            return _context.Inventory.Any(e => e.Id == id);
+            return _context.Sale.Any(e => e.Id == id);
         }
     }
 }

@@ -12,17 +12,27 @@
     <Content Remove="Views\Index.cshtml" />
     <Content Remove="Views\Inventory\_ViewStart.cshtml" />
     <Content Remove="Views\Inventory\_ViewImports.cshtml" />
+    <Content Remove="Views\Inventory\Index.cshtml" />
+    <Content Remove="Views\Supplier\Index.cshtml" />
+    <Content Remove="Views\Inventory\Create.cshtml" />
+    <Content Remove="Views\Inventory\Edit.cshtml" />
+    <Content Remove="Views\Inventory\Details.cshtml" />
+    <Content Remove="Views\Inventory\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Inventory\" />
+    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.0">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SQLite" Version="3.1.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SQLite" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Data\InventoryContext.cs" />
+    <Compile Remove="Controllers\InventoryController.cs" />
   </ItemGroup>
 </Project>
